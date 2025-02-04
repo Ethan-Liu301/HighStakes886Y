@@ -31,6 +31,7 @@ double measuredAngle;
 
 //COLOR SORT
 int ejectColor;
+bool stopIntake = false;
 int noColor = 0;
 int red = 1;
 int blue = 2;

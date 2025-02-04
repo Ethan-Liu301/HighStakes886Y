@@ -126,17 +126,23 @@ void initialize() {
         colorSort(noColor);
       }
     }
-    if (useAutoIntake == true) {
+    if (useAutoIntake) {
       loadRing();
     }
 
-    if (armMacro == true) {
+    if (armMacro) {
       Macro();
+    }
+    if (fabs(intake.get_actual_velocity()) < 25 && abs(intake.get_voltage()/1000*intake.get_current_draw()) > 8){
+      intake.move(-127);
+      stopIntake = true;
+    } else{
+      stopIntake = false;
     }
 
     ejectNextRing();
-      // delay to save resources
-      pros::delay(25);
+    // delay to save resources
+    pros::delay(25);
       
     }
   });
@@ -262,13 +268,12 @@ void opcontrol() {
 
     if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       sortingColor = true;
-      
     }
-    else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+    else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2) && !stopIntake) {
       intake.move_voltage(-12000);
       sortingColor = false;
     }
-    else {
+    else if(!stopIntake) {
       intake.move_voltage(0);
       sortingColor = false;
     }
