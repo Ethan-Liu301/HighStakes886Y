@@ -32,7 +32,7 @@ extern double measuredAngle;
 
 //COLOR SORT
 extern int ejectColor;
-bool stopIntake;
+extern bool stopIntake;
 extern int noColor;
 extern int red;
 extern int blue;
