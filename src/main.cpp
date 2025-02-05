@@ -133,8 +133,8 @@ void initialize() {
     if (armMacro) {
       Macro();
     }
-    if (fabs(intake.get_actual_velocity()) < 60 && abs(intake.get_voltage()/1000*intake.get_current_draw()/1000) > 8.5 && !stopIntake){
-      intake.move(-127);
+    if (intake.get_actual_velocity() > -60 && intake.get_actual_velocity() < 0 && abs(intake.get_voltage()/1000*intake.get_current_draw()/1000) > 9 && !stopIntake){
+      intake.move(127);
       stopIntake = true;
     } if(intake.get_actual_velocity() > 5 && stopIntake){
       stopIntake = false;
