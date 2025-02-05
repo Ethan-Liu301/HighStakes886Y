@@ -138,6 +138,7 @@ void initialize() {
       stopIntake = true;
     } if(intake.get_actual_velocity() > 5 && stopIntake){
       stopIntake = false;
+      intake.move(0);
     }
 
     ejectNextRing();
